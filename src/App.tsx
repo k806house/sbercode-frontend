@@ -18,9 +18,9 @@ const initializeAssistant = (getState: any) => {
 };
 
 export const App: FC = memo(() => {
-    const [appState, dispatch] = useReducer(reducer, {
-        notes: [{ id: 'uinmh', title: 'купить хлеб', completed: false }],
-    });
+    // const [appState, dispatch] = useReducer(reducer, {
+    //     notes: [{ id: 'uinmh', title: 'купить хлеб', completed: false }],
+    // });
 
     const [note, setNote] = useState('');
 
@@ -42,23 +42,23 @@ export const App: FC = memo(() => {
                 }
             }
 
-            if (action) {
-                dispatch(action);
-            }
+            // if (action) {
+            //     dispatch(action);
+            // }
         });
     }, []);
 
-    useEffect(() => {
-        assistantStateRef.current = {
-            item_selector: {
-                items: appState.notes.map(({ id, title }, index) => ({
-                    number: index + 1,
-                    id,
-                    title,
-                })),
-            },
-        };
-    }, [appState]);
+    // useEffect(() => {
+    //     assistantStateRef.current = {
+    //         item_selector: {
+    //             items: appState.notes.map(({ id, title }, index) => ({
+    //                 number: index + 1,
+    //                 id,
+    //                 title,
+    //             })),
+    //         },
+    //     };
+    // }, [appState]);
 
 
     return (
