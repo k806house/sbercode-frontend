@@ -21,7 +21,7 @@ type Note = {
     completed: boolean;
 };
 
-enum UserStage {
+export enum UserStage {
     ChoosingCafe,
     ChoosingItems,
     Checkout,
@@ -85,7 +85,7 @@ export const reducer = (state: State, action: Action) => {
         case 'choose_cafe':
             // console.log(state.user_cafes.get(action.user_id));
 
-            state.user_stages.set(action.user_id, UserStage.ChoosingCafe);
+            state.user_stages.set(action.user_id, UserStage.ChoosingItems);
             state.user_cafes.set(action.user_id, action.cafe);
             state.user_carts.set(action.user_id, { items: [], time: '', name: '', address: '' });
 

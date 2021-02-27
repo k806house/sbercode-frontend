@@ -1,8 +1,8 @@
-import React, { FC, memo, useReducer, useState, useRef, useEffect } from 'react';
+import React, { ReactDOM, FC, memo, useReducer, useState, useRef, useEffect } from 'react';
 import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
 import './App.css';
 
-import { reducer } from './store';
+import { UserStage, reducer } from './store';
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -26,7 +26,6 @@ export const App: FC = memo(() => {
     });
 
     const [note, setNote] = useState('kekis');
-    console.log(note);
 
     const assistantStateRef = useRef<AssistantAppState>();
     const assistantRef = useRef<ReturnType<typeof createAssistant>>();
@@ -35,7 +34,6 @@ export const App: FC = memo(() => {
         assistantRef.current = initializeAssistant(() => assistantStateRef.current);
 
         assistantRef.current.on('data', ({ navigation, action }: any) => {
-            console.log(action);
             if (navigation) {
                 switch (navigation.command) {
                     case 'UP':
@@ -47,8 +45,16 @@ export const App: FC = memo(() => {
                 }
             }
 
+            console.log(action);
             if (action) {
-                console.log("HAHA");
+                if (appState.user_stages.get(action.user_id) == UserStage.ChoosingItems)
+                {
+                    // console.log(appState.user_cafes.get(action.user_id));
+                    // ReactDOM.render(
+                    //     <h1>VOT ETO DAAA</h1>,
+                    //     document.getElementById('root')
+                    // );
+                }
                 dispatch(action);
             }
         });
