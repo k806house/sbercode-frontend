@@ -1,7 +1,9 @@
 import React, { FC, memo, useReducer, useState, useRef, useEffect } from 'react';
 import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
 import './App.css';
-import { Menu } from './Menu';
+import { Container } from '@sberdevices/ui/components/Grid';
+import { Button } from '@sberdevices/ui/components/Button/Button';
+import { reducer } from './store';
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -15,7 +17,7 @@ const initializeAssistant = (getState: any) => {
     return createAssistant({ getState });
 };
 
-export const App: FC = memo(() => {
+export const Menu: FC = memo(() => {
     // const [appState, dispatch] = useReducer(reducer, {
     //     notes: [{ id: 'uinmh', title: 'купить хлеб', completed: false }],
     // });
@@ -60,6 +62,8 @@ export const App: FC = memo(() => {
 
 
     return (
-        <Menu></Menu>
+        <Container>
+            <Button view="primary">Hello, Plasma!</Button>
+        </Container>
     );
 });
