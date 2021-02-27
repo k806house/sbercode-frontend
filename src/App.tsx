@@ -60,59 +60,10 @@ export const App: FC = memo(() => {
         };
     }, [appState]);
 
-    const doneNote = (title: string) => {
-        assistantRef.current?.sendData({ action: { action_id: 'done', parameters: { title } } });
-    };
 
     return (
         <Container>
             <Button view="primary">Hello, Plasma!</Button>
         </Container>
-        // <main className="container">
-        //     <form
-        //         onSubmit={(event) => {
-        //             event.preventDefault();
-        //             dispatch({ type: 'add_note', note });
-        //             setNote('');
-        //         }}
-        //     >
-        //         <input
-        //             className="add-note"
-        //             type="text"
-        //             placeholder="Add Note"
-        //             value={note}
-        //             onChange={({ target: { value } }) => setNote(value)}
-        //             required
-        //             autoFocus
-        //         />
-        //     </form>
-        //     <p>
-        //         <Button view="primary">Hello Plasma</Button>
-        //     </p>
-        //     <ul className="notes">
-        //         {appState.notes.map((note, index) => (
-        //             <li className="note" key={note.id}>
-        //                 <span>
-        //                     <span style={{ fontWeight: 'bold' }}>{index + 1}. </span>
-        //                     <span
-        //                         style={{
-        //                             textDecorationLine: note.completed ? 'line-through' : 'none',
-        //                         }}
-        //                     >
-        //                         {note.title}
-        //                     </span>
-        //                 </span>
-        //                 <input
-        //                     id={`checkbox-note-${note.id}`}
-        //                     className="done-note"
-        //                     type="checkbox"
-        //                     checked={note.completed}
-        //                     onChange={() => doneNote(note.title)}
-        //                     disabled={note.completed}
-        //                 />
-        //             </li>
-        //         ))}
-        //     </ul>
-        // </main>
     );
 });
