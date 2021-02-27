@@ -3,6 +3,7 @@ import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sbe
 import './App.css';
 
 import { UserStage, reducer } from './store';
+import { Menu } from './Menu';
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -77,6 +78,7 @@ export const App: FC = memo(() => {
     };
 
     return (
+        //<Menu name="Чебуречная СССР"></Menu>
         <main className="container">
             <form
                 onSubmit={(event) => {

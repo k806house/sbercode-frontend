@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Чебуречная СССР",
+        "menu": [
+            {
+                "item_id": 0,
+                "name": "Чебурек с сыром",
+                "description": "130 г • Мука, вода, соль, масло растительное, зелень, чеснок, сыр российский, сыр чанах, сыр адыгейский",
+                "img_url": "www.delivery-club.ru/media/cms/relation_product/44623/319627533_m650.jpg?resize=fit&width=1300&height=544&gravity=ce&out=webp",
+                "price": 128
+            },
+            {
+                "item_id": 1,
+                "name": "Квас домашний",
+                "description": "1000 мл • Квасное сусло, сахар, дрожжи",
+                "img_url": "www.delivery-club.ru/media/cms/relation_product/44623/319627541_m650.jpg?resize=fit&width=1300&height=544&gravity=ce&out=webp",
+                "price": 150
+            },
+            {
+                "item_id": 2,
+                "name": "Салат Оливье",
+                "description": "150 г • Картофель, морковь, горошек зеленый, огурец соленый, огурец свежий, яйцо куриное, колбаса вареная, майонез",
+                "img_url": "www.delivery-club.ru/media/cms/relation_product/44623/319627496_m650.jpg?resize=fit&width=1300&height=544&gravity=ce&out=webp",
+                "price": 180
+            },
+            {
+                "item_id": 3,
+                "name": "Пирожное картошка",
+                "description": "50 г • Сухари ванильные, сахар, молоко, ванилин, какао порошок, масло сливочное, коньяк",
+                "img_url": "www.delivery-club.ru/media/cms/relation_product/44623/319627540_m650.jpg?resize=fit&width=1300&height=544&gravity=ce&out=webp",
+                "price": 75
+            }
+        ]
+    }
+]
