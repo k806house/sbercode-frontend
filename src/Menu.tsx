@@ -1,69 +1,82 @@
-import React, { FC, memo, useReducer, useState, useRef, useEffect } from 'react';
-import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
-import './App.css';
-import { Container } from '@sberdevices/ui/components/Grid';
-import { Button } from '@sberdevices/ui/components/Button/Button';
-import { reducer } from './store';
+import React, { FC, memo } from "react";
+import "./App.css";
+import { Button } from "@sberdevices/ui/components/Button/Button";
+import JsonData from "./data.json";
+import {
+  CardBody,
+  Carousel,
+  CarouselItem,
+  Card,
+  CardContent,
+  CardMedia,
+  TextBox,
+  TextBoxBigTitle,
+  TextBoxBiggerTitle,
+  TextBoxSubTitle,
+} from "@sberdevices/ui";
 
-const initializeAssistant = (getState: any) => {
-    if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
-        return createSmartappDebugger({
-            token: process.env.REACT_APP_TOKEN ?? '',
-            initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
-            getState,
-        });
-    }
-
-    return createAssistant({ getState });
+type MenuProps = {
+  name: string;
 };
 
-export const Menu: FC = memo(() => {
-    // const [appState, dispatch] = useReducer(reducer, {
-    //     notes: [{ id: 'uinmh', title: 'купить хлеб', completed: false }],
-    // });
+interface MenuItem {
+  item_id: number;
+  name: string;
+  description: string;
+  img_url: string;
+  price: number;
+}
 
-    const [note, setNote] = useState('');
+export const Menu: FC<MenuProps> = memo((props: MenuProps) => {
+  let data = JSON.parse(JSON.stringify(JsonData));
+  let s = "";
+  let i = 0;
+  let menu: MenuItem[];
 
-    const assistantStateRef = useRef<AssistantAppState>();
-    const assistantRef = useRef<ReturnType<typeof createAssistant>>();
+  while (s !== props.name && data.length > i) {
+    s = data[i].name;
+    i++;
+  }
 
-    useEffect(() => {
-        assistantRef.current = initializeAssistant(() => assistantStateRef.current);
+  i--;
 
-        assistantRef.current.on('data', ({ navigation, action }: any) => {
-            if (navigation) {
-                switch (navigation.command) {
-                    case 'UP':
-                        window.scrollTo(0, window.scrollY - 500);
-                        break;
-                    case 'DOWN':
-                        window.scrollTo(0, window.scrollY + 500);
-                        break;
-                }
-            }
+  menu = data[i].menu;
+  const index = 0;
+  const axis = "x";
+  const scrollSnapType = "mandatory";
+  const detectThreshold = 0.5;
 
-            // if (action) {
-            //     dispatch(action);
-            // }
-        });
-    }, []);
-
-    // useEffect(() => {
-    //     assistantStateRef.current = {
-    //         item_selector: {
-    //             items: appState.notes.map(({ id, title }, index) => ({
-    //                 number: index + 1,
-    //                 id,
-    //                 title,
-    //             })),
-    //         },
-    //     };
-    // }, [appState]);
-
-
-    return (
-        <Container>
-            <Button view="primary">Hello, Plasma!</Button>
-        </Container>
-    );
+  return (
+    <Carousel
+      axis={axis}
+      index={index}
+      scrollSnapType={scrollSnapType}
+      detectThreshold={detectThreshold}
+      style={{ paddingTop: "1.25rem", paddingBottom: "1.25rem" }}
+    >
+      {menu.map(({ name, price, img_url, description }, i) => (
+        <CarouselItem key={`item:${i}`} style={{ padding: "0 1rem" }}>
+          <Card style={{ width: "25rem", height: "40rem" }}>
+            <CardBody>
+              <CardMedia src={img_url} placeholder="blini.jpg" ratio={"1:1"} />
+              <CardContent cover={false}>
+                <TextBox>
+                  <TextBoxBigTitle>{name}</TextBoxBigTitle>
+                  <TextBoxBiggerTitle>{price} ₽</TextBoxBiggerTitle>
+                  <TextBoxSubTitle>{description}</TextBoxSubTitle>
+                </TextBox>
+                <Button
+                  text="В корзину"
+                  view="primary"
+                  size="s"
+                  fullWidth
+                  style={{ marginTop: "1em" }}
+                />
+              </CardContent>
+            </CardBody>
+          </Card>
+        </CarouselItem>
+      ))}
+    </Carousel>
+  );
 });

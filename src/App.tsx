@@ -60,6 +60,6 @@ export const App: FC = memo(() => {
 
 
     return (
-        <Menu></Menu>
+     <Menu name="Теремок"></Menu>
     );
 });
