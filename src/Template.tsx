@@ -10,6 +10,7 @@ import {background, body1, gradient} from "@sberdevices/plasma-tokens";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
 import {Alarm} from './Alarm'
+import {Menu} from './Menu'
 
 const DocStyles = createGlobalStyle`
   html {
@@ -42,19 +43,20 @@ export const Template: FC = memo(() => {
                 <DocStyles />
                 <Theme />
                 <Container>
-                    <HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>
-                        <HeaderBack onClick={handleClick}/>
-                        {/*<HeaderLogo src="./images/logo.png" />*/}
-                        <HeaderTitleWrapper>
-                            <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>
-                            <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>
-                        </HeaderTitleWrapper>
-                        <HeaderContent>
-                            {/*<Content />*/}
-                        </HeaderContent>
-                        <IconCartAlt/>
-                    </HeaderRoot>
-                    <Alarm></Alarm>
+                    {/*<HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>*/}
+                    {/*    <HeaderBack onClick={handleClick}/>*/}
+                    {/*    /!*<HeaderLogo src="./images/logo.png" />*!/*/}
+                    {/*    <HeaderTitleWrapper>*/}
+                    {/*        <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>*/}
+                    {/*        <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>*/}
+                    {/*    </HeaderTitleWrapper>*/}
+                    {/*    <HeaderContent>*/}
+                    {/*        /!*<Content />*!/*/}
+                    {/*    </HeaderContent>*/}
+                    {/*    <IconCartAlt/>*/}
+                    {/*</HeaderRoot>*/}
+                    {/*<Alarm></Alarm>*/}
+                    <Menu name={'name'}></Menu>
                 </Container>
             </AppStyled>
         </ThemeProvider>
