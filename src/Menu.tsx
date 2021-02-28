@@ -3,6 +3,7 @@ import "./App.css";
 import { Button } from "@sberdevices/ui/components/Button/Button";
 import JsonData from "./data.json";
 import {
+  Row,
   CardBody,
   Carousel,
   CarouselItem,
@@ -45,38 +46,43 @@ export const Menu: FC<MenuProps> = memo((props: MenuProps) => {
   const axis = "x";
   const scrollSnapType = "mandatory";
   const detectThreshold = 0.5;
+  const scrollAlign = 'center';
+  const detectActive = true;
+  const animatedScrollByIndex = false;
 
   return (
-    <Carousel
-      axis={axis}
-      index={index}
-      scrollSnapType={scrollSnapType}
-      detectThreshold={detectThreshold}
-      style={{ paddingTop: "1.25rem", paddingBottom: "1.25rem" }}
-    >
-      {menu.map(({ name, price, img_url, description }, i) => (
-        <CarouselItem key={`item:${i}`} style={{ padding: "0 1rem" }}>
-          <Card style={{ width: "25rem", height: "40rem" }}>
-            <CardBody>
-              <CardMedia src={img_url} placeholder="blini.jpg" ratio={"1:1"} />
-              <CardContent cover={false}>
-                <TextBox>
-                  <TextBoxBigTitle>{name}</TextBoxBigTitle>
-                  <TextBoxBiggerTitle>{price} ₽</TextBoxBiggerTitle>
-                  <TextBoxSubTitle>{description}</TextBoxSubTitle>
-                </TextBox>
-                <Button
-                  text="В корзину"
-                  view="primary"
-                  size="s"
-                  fullWidth
-                  style={{ marginTop: "1em" }}
-                />
-              </CardContent>
-            </CardBody>
-          </Card>
-        </CarouselItem>
-      ))}
-    </Carousel>
+      <Carousel
+          as={Row}
+          axis={axis}
+          index={index}
+          animatedScrollByIndex={animatedScrollByIndex}
+          scrollAlign={scrollAlign}
+          scrollSnapType={scrollSnapType}
+          detectActive={detectActive}
+          detectThreshold={detectThreshold}
+      >
+        {menu.map(({ name, price, img_url, description }, i) => (
+            <CarouselItem key={`item:${i}`} style={{ padding: "0 1rem" }}>
+              <Card style={{ width: "25rem", height: "40rem" }}>
+                <CardBody>
+                  <CardMedia src={img_url} placeholder="blini.jpg" ratio={"1 / 1"} />
+                  <CardContent cover={false}>
+                    <TextBox>
+                      <TextBoxBigTitle>{name}</TextBoxBigTitle>
+                      <TextBoxBiggerTitle>{price} ₽</TextBoxBiggerTitle>
+                      <TextBoxSubTitle style={{height: "2rem"}}>{description}</TextBoxSubTitle>
+                    </TextBox>
+                    <Button
+                        text="В корзину"
+                        view="primary"
+                        size="s"
+                        style={{ marginTop: "1em" }}
+                    />
+                  </CardContent>
+                </CardBody>
+              </Card>
+            </CarouselItem>
+        ))}
+      </Carousel>
   );
 });
