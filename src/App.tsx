@@ -54,7 +54,6 @@ export const App: FC = memo(() => {
         id_to_item: new Map(),
     });
 
-    const [note, setNote] = useState('kekis');
     const [stage, setStage] = useState(UserStage.ChoosingCafe);
     const [cafe, setCafe] = useState('Чебуречная СССР');
     const [user_id, setId] = useState(" ");
@@ -127,7 +126,7 @@ export const App: FC = memo(() => {
                     <DocStyles />
                     <Theme />
                     <Container>
-                        {/* <Toolbar setStage={setStage}></Toolbar> */}
+                        <Toolbar setStage={setStage}></Toolbar>
                         <Alarm items={appState.user_carts.get(user_id)?.items!}
                                setStage={setStage}
                                cafeName={cafe}></Alarm>

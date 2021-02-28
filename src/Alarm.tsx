@@ -19,6 +19,10 @@ type AlarmProps = {
 
 export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
     const items = props.items;
+    let total = 0;
+    items.forEach((item) => {
+        total += item.price;
+    });
     return (
         <Container>
             <Card style={{ width: '20rem' }}>
@@ -53,7 +57,7 @@ export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
                             <TextBox></TextBox>
                         }
                         right={
-                            <TextBox> 156 Rub</TextBox>
+                            <TextBox> {total}</TextBox>
                         }
                     />
 
