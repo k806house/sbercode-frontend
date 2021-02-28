@@ -25,6 +25,7 @@ export enum UserStage {
     ChoosingCafe,
     ChoosingItems,
     Checkout,
+    Final,
 };
 
 type State = {

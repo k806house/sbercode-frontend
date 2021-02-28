@@ -15,10 +15,12 @@ import {Input} from "@sberdevices/ui/components/Input";
 import {isSberBox} from "@sberdevices/ui/utils";
 import {Toolbar} from "./Toolbar";
 import {Item} from "./store"
+import { UserStage } from './store';
 
 type AlarmProps = {
     items: Item[];
     cafeName: string;
+    setStage: any;
 };
 
 export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
@@ -90,7 +92,9 @@ export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
                         </Col>
                     </Row>
                     <Input placeholder={'Время заказа'}></Input>
-                    <Button text="Заказать" view="primary" />
+                    <Button text="Оформить заказ"
+                            view="primary"
+                            onClick={props.setStage(UserStage.Final)}/>
                 </CardContent>
             </Card>
         </Container>
