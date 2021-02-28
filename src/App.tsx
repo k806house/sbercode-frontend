@@ -29,6 +29,7 @@ export const App: FC = memo(() => {
 
     const [note, setNote] = useState('kekis');
     const [stage, setStage] = useState(UserStage.ChoosingCafe);
+    const [cafe, setCafe] = useState('Чебуречная СССР');
 
     const assistantStateRef = useRef<AssistantAppState>();
     const assistantRef = useRef<ReturnType<typeof createAssistant>>();
@@ -52,6 +53,7 @@ export const App: FC = memo(() => {
             if (action) {
                 dispatch(action);
                 setStage(appState.user_stages.get(action.user_id)!);
+                setCafe(appState.user_cafes.get(action.user_id)!);
             }
         });
     }, []);
@@ -73,12 +75,8 @@ export const App: FC = memo(() => {
     };
 
     if (stage == UserStage.ChoosingItems) {
-        return (
-            //<Menu name="Чебуречная СССР"></Menu>
-            <main className="container">
-                KEKIS
-            </main>
-        );
+        let menu = <Menu name={cafe}></Menu>
+        return menu;
     }
 
     return (
