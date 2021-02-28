@@ -33,6 +33,7 @@ export const App: FC = memo(() => {
     const [note, setNote] = useState('kekis');
     const [stage, setStage] = useState(UserStage.ChoosingCafe);
     const [cafe, setCafe] = useState('Чебуречная СССР');
+    const [user_id, setId] = useState(0);
 
     const assistantStateRef = useRef<AssistantAppState>();
     const assistantRef = useRef<ReturnType<typeof createAssistant>>();
@@ -57,6 +58,7 @@ export const App: FC = memo(() => {
                 dispatch(action);
                 setStage(appState.user_stages.get(action.user_id)!);
                 setCafe(appState.user_cafes.get(action.user_id)!);
+                setId(action.user_id);
             }
         });
     }, []);
@@ -78,7 +80,7 @@ export const App: FC = memo(() => {
     };
 
     if (stage == UserStage.ChoosingItems) {
-        let menu = <Menu name={cafe}></Menu>
+        let menu = <Menu name={cafe} dispatch={dispatch} userId={user_id}></Menu>
         return menu;
     }
 

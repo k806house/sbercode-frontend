@@ -56,7 +56,6 @@ export const Template: FC = memo(() => {
                     {/*    <IconCartAlt/>*/}
                     {/*</HeaderRoot>*/}
                     {/*<Alarm></Alarm>*/}
-                    <Menu name={'name'}></Menu>
                 </Container>
             </AppStyled>
         </ThemeProvider>
