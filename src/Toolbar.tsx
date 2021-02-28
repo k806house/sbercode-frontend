@@ -33,33 +33,24 @@ class SuperTheme {
 
 const theme = new SuperTheme();
 
-export const Template: FC = memo(() => {
+export const Toolbar: FC = memo(() => {
     function handleClick() {
         console.log('Back Button');
     }
     return (
-        <ThemeProvider theme={theme}>
-            <AppStyled>
-                <DocStyles />
-                <Theme />
-                <Container>
-                    {/*<HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>*/}
-                    {/*    <HeaderBack onClick={handleClick}/>*/}
-                    {/*    /!*<HeaderLogo src="./images/logo.png" />*!/*/}
-                    {/*    <HeaderTitleWrapper>*/}
-                    {/*        <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>*/}
-                    {/*        <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>*/}
-                    {/*    </HeaderTitleWrapper>*/}
-                    {/*    <HeaderContent>*/}
-                    {/*        /!*<Content />*!/*/}
-                    {/*    </HeaderContent>*/}
-                    {/*    <IconCartAlt/>*/}
-                    {/*</HeaderRoot>*/}
-                    {/*<Alarm></Alarm>*/}
-                    <Menu name={'name'}></Menu>
-                </Container>
-            </AppStyled>
-        </ThemeProvider>
-
+        <Container>
+            <HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>
+                <HeaderBack onClick={handleClick}/>
+                {/*<HeaderLogo src="./images/logo.png" />*/}
+                <HeaderTitleWrapper>
+                    <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>
+                    <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>
+                </HeaderTitleWrapper>
+                <HeaderContent>
+                    {/*<Content />*/}
+                </HeaderContent>
+                <IconCartAlt/>
+            </HeaderRoot>
+        </Container>
     );
 });
