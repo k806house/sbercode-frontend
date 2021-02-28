@@ -4,44 +4,24 @@ import {Container, Row, Col} from "@sberdevices/ui/components/Grid";
 import {Button} from "@sberdevices/ui/components/Button/Button";
 import {
     Card, CardBody, CardContent, CardMedia, CardHeadline1,
-    Cell,CellIcon, CellDisclosure, CellListItem,
+    Cell, CellIcon, CellDisclosure, CellListItem,
     TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxBigTitle,
-    MarkedList, MarkedItem,  TextBoxLabel,
-    TimePicker
+    MarkedList, MarkedItem, TextBoxLabel,
+    TimePicker, DatePicker
 } from '@sberdevices/ui';
 import {IconAvatar, IconInfo, IconSpinner} from "@sberdevices/plasma-icons";
 import {primary} from "@sberdevices/plasma-tokens";
 import {Input} from "@sberdevices/ui/components/Input";
 import {isSberBox} from "@sberdevices/ui/utils";
+import {Toolbar} from "./Toolbar";
 
 export const Alarm: FC = memo(() => {
     const isSberbox = isSberBox();
+    const now = new Date();
     return (
         <Container>
             <Card style={{ width: '20rem' }}>
                 <CardContent compact>
-                    {/*<TimePicker*/}
-                    {/*    value={*/}
-                    {/*        new Date(*/}
-                    {/*            now.getFullYear(),*/}
-                    {/*            now.getMonth(),*/}
-                    {/*            now.getDate(),*/}
-                    {/*            number('hours', 0),*/}
-                    {/*            number('minutes', 30),*/}
-                    {/*            number('seconds', 59),*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*    min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}*/}
-                    {/*    max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 59)}*/}
-                    {/*    options={{*/}
-                    {/*        hours: boolean('options.hours', true),*/}
-                    {/*        minutes: boolean('options.minutes', true),*/}
-                    {/*        seconds: boolean('options.seconds', true),*/}
-                    {/*    }}*/}
-                    {/*    disabled={boolean('disabled', false)}*/}
-                    {/*    controls={boolean('controls', isSberbox)}*/}
-                    {/*    onChange={action('onChange')}*/}
-                    {/*/>*/}
                     {/*Check*/}
                     <Cell
                         content={

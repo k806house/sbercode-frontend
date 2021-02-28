@@ -21,6 +21,7 @@ import styled, {createGlobalStyle, ThemeProvider} from "styled-components";
 import {background, body1, gradient} from "@sberdevices/plasma-tokens";
 import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
 import {Input} from "@sberdevices/ui/components/Input";
+import {Alarm} from "./Alarm";
 
 const DocStyles = createGlobalStyle`
   html {
@@ -120,17 +121,27 @@ export const App: FC = memo(() => {
                     <DocStyles />
                     <Theme />
                     <Container>
-                        <Toolbar></Toolbar>
+                        <Toolbar setStage={setStage}></Toolbar>
                         <Menu name={cafe} dispatch={dispatch} userId={user_id}></Menu>
                     </Container>
                 </AppStyled>
             </ThemeProvider>
         );
+
     }
     if (stage == UserStage.Checkout) {
-        // return (
-
-        // );
+        return (
+            <ThemeProvider theme={theme}>
+                <AppStyled>
+                    <DocStyles />
+                    <Theme />
+                    <Container>
+                        <Toolbar setStage={setStage}></Toolbar>
+                        <Alarm></Alarm>
+                    </Container>
+                </AppStyled>
+            </ThemeProvider>
+        );
     }
 
     return (
