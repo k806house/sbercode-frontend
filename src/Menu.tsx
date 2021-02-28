@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useRef } from "react";
 import "./App.css";
 import { Button } from "@sberdevices/ui/components/Button/Button";
 import JsonData from "./data.json";
@@ -37,6 +37,10 @@ export const Menu: FC<MenuProps> = memo((props: MenuProps) => {
   let i = 0;
   let menu: MenuItem[];
 
+  let handleClick = () => {
+    console.log('значение this:', this);
+  }
+
   while (s !== props.name && data.length > i) {
     s = data[i].name;
     i++;
@@ -52,13 +56,13 @@ export const Menu: FC<MenuProps> = memo((props: MenuProps) => {
   const scrollAlign = 'center';
   const detectActive = true;
   const animatedScrollByIndex = false;
-
+  
   
 
   function addToCart(id:number){
     console.log(id);
     let btn = document.getElementById(`${id}`);
-    let action ={
+    let action = {
       user_id : props.userId,
       type: 'add_item',
       item_id: id
@@ -95,7 +99,8 @@ export const Menu: FC<MenuProps> = memo((props: MenuProps) => {
                         view="primary"
                         size="s"
                         style={{ marginTop: "1em" }}
-                        onClick = {()=>{addToCart(item_id);}}
+                        onClick = {()=>{addToCart(item_id); console.log(this)}}
+                        //onClick = {handleClick}
                     />
                   </CardContent>
                 </CardBody>

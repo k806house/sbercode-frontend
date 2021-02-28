@@ -38,30 +38,6 @@ export const Toolbar: FC = memo(() => {
         console.log('Back Button');
     }
     return (
-<<<<<<< HEAD:src/Template.tsx
-        <ThemeProvider theme={theme}>
-            <AppStyled>
-                <DocStyles />
-                <Theme />
-                <Container>
-                    {/*<HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>*/}
-                    {/*    <HeaderBack onClick={handleClick}/>*/}
-                    {/*    /!*<HeaderLogo src="./images/logo.png" />*!/*/}
-                    {/*    <HeaderTitleWrapper>*/}
-                    {/*        <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>*/}
-                    {/*        <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>*/}
-                    {/*    </HeaderTitleWrapper>*/}
-                    {/*    <HeaderContent>*/}
-                    {/*        /!*<Content />*!/*/}
-                    {/*    </HeaderContent>*/}
-                    {/*    <IconCartAlt/>*/}
-                    {/*</HeaderRoot>*/}
-                    {/*<Alarm></Alarm>*/}
-                </Container>
-            </AppStyled>
-        </ThemeProvider>
-
-=======
         <Container>
             <HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>
                 <HeaderBack onClick={handleClick}/>
@@ -76,6 +52,5 @@ export const Toolbar: FC = memo(() => {
                 <IconCartAlt/>
             </HeaderRoot>
         </Container>
->>>>>>> 94ed2a3e4e7893abdeff263cc0032f7f9a5b57b8:src/Toolbar.tsx
     );
 });
