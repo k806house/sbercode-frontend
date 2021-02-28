@@ -1,13 +1,47 @@
 import React, { ReactDOM, FC, memo, useReducer, useState, useRef, useEffect } from 'react';
 import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
 import './App.css';
-import { Template } from './Template';
-import {Header, HeaderBack, HeaderLogo, HeaderTitle, HeaderContent, HeaderSubtitle, CellContentWrapper }  from '@sberdevices/ui';
+import { Toolbar } from './Toolbar';
+import {
+    Header,
+    HeaderBack,
+    HeaderLogo,
+    HeaderTitle,
+    HeaderContent,
+    HeaderSubtitle,
+    CellContentWrapper,
+    Container, Row, Col,
+    TextBox, TextBoxBiggerTitle, Display1
+} from '@sberdevices/ui';
 import {HeaderRoot} from "@sberdevices/ui/components/Header/HeaderRoot";
 
 import { UserStage, reducer } from './store';
 import { Menu } from './Menu';
-import { Alarm } from './Alarm';
+import styled, {createGlobalStyle, ThemeProvider} from "styled-components";
+import {background, body1, gradient} from "@sberdevices/plasma-tokens";
+import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
+import {Input} from "@sberdevices/ui/components/Input";
+
+const DocStyles = createGlobalStyle`
+  html {
+    background-color: ${background};
+    background-image: ${gradient};
+    min-height: 100vh;
+  }
+`;
+const Theme = createGlobalStyle(darkSber);
+const AppStyled = styled.div`
+  ${body1}
+`;
+
+class SuperTheme {
+    private color: string;
+    constructor() {
+        this.color = "white";
+    }
+}
+
+const theme = new SuperTheme();
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -80,55 +114,46 @@ export const App: FC = memo(() => {
     };
 
     if (stage == UserStage.ChoosingItems) {
+<<<<<<< HEAD
         let menu = <Menu name={cafe} dispatch={dispatch} userId={user_id}></Menu>
         return menu;
+=======
+        return (
+            <ThemeProvider theme={theme}>
+                <AppStyled>
+                    <DocStyles />
+                    <Theme />
+                    <Container>
+                        <Toolbar></Toolbar>
+                        <Menu name={cafe}></Menu>
+                    </Container>
+                </AppStyled>
+            </ThemeProvider>
+        );
+>>>>>>> 94ed2a3e4e7893abdeff263cc0032f7f9a5b57b8
     }
 
     return (
-        // <Menu name="Чебуречная СССР"></Menu>
-        // <main className="container">
-        //     <form
-        //         onSubmit={(event) => {
-        //             event.preventDefault();
-        //             dispatch({ type: 'add_note', note });
-        //             setNote('');
-        //         }}
-        //     >
-        //         <input
-        //             className="add-note"
-        //             type="text"
-        //             placeholder="Add Note"
-        //             value={note}
-        //             onChange={({ target: { value } }) => setNote(value)}
-        //             required
-        //             autoFocus
-        //         />
-        //     </form>
-        //     <ul className="notes">
-        //         {appState.notes.map((note, index) => (
-        //             <li className="note" key={note.id}>
-        //                 <span>
-        //                     <span style={{ fontWeight: 'bold' }}>{index + 1}. </span>
-        //                     <span
-        //                         style={{
-        //                             textDecorationLine: note.completed ? 'line-through' : 'none',
-        //                         }}
-        //                     >
-        //                         {note.title}
-        //                     </span>
-        //                 </span>
-        //                 <input
-        //                     id={`checkbox-note-${note.id}`}
-        //                     className="done-note"
-        //                     type="checkbox"
-        //                     checked={note.completed}
-        //                     onChange={() => doneNote(note.title)}
-        //                     disabled={note.completed}
-        //                 />
-        //             </li>
-        //         ))}
-        //     </ul>
-        // </main>
-        <Template></Template>
+        <ThemeProvider theme={theme}>
+            <AppStyled>
+                <DocStyles />
+                <Theme />
+                <Container>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }}></Col>
+                    </Row>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }}></Col>
+                    </Row>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
+                        <Col style={{ marginBottom: '1rem' }} size={4}>
+                            <Display1>Завтра завтрак</Display1>
+                        </Col>
+                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
+                    </Row>
+                </Container>
+            </AppStyled>
+        </ThemeProvider>
     );
 });
