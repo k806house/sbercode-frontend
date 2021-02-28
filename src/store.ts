@@ -1,6 +1,6 @@
 import { ActionButton } from "@sberdevices/ui";
 
-type Item = {
+export type Item = {
     item_id: number,
     img_url: string,
     name: string,
@@ -25,14 +25,15 @@ export enum UserStage {
     ChoosingCafe,
     ChoosingItems,
     Checkout,
+    Final,
 };
 
 type State = {
     notes: Array<Note>;
     id_to_item: Map<number, Item>;
-    user_stages: Map<number, UserStage>;
-    user_carts: Map<number, Cart>;
-    user_cafes: Map<number, string>;
+    user_stages: Map<string, UserStage>;
+    user_carts: Map<string, Cart>;
+    user_cafes: Map<string, string>;
 };
 
 // type Action =
@@ -61,12 +62,12 @@ type Action =
     }
     | {
         type: 'choose_cafe';
-        user_id: number;
+        user_id: string;
         cafe: string;
     }
     | {
         type: 'add_item';
-        user_id: number;
+        user_id: string;
         item_id: number;
     }
     | {
@@ -128,6 +129,7 @@ export const reducer = (state: State, action: Action) => {
             throw new Error();
     }
 };
+
 
 
 // export const reducer = (item: Item, action: Action) => {

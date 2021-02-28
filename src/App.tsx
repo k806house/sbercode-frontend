@@ -1,26 +1,16 @@
-import React, { ReactDOM, FC, memo, useReducer, useState, useRef, useEffect } from 'react';
-import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
+import React, {FC, memo, useEffect, useReducer, useRef, useState} from 'react';
+import {AssistantAppState, createAssistant, createSmartappDebugger} from '@sberdevices/assistant-client';
 import './App.css';
-import { Toolbar } from './Toolbar';
-import {
-    Header,
-    HeaderBack,
-    HeaderLogo,
-    HeaderTitle,
-    HeaderContent,
-    HeaderSubtitle,
-    CellContentWrapper,
-    Container, Row, Col,
-    TextBox, TextBoxBiggerTitle, Display1
-} from '@sberdevices/ui';
-import {HeaderRoot} from "@sberdevices/ui/components/Header/HeaderRoot";
+import {Toolbar} from './Toolbar';
+import {Col, Container, Display1, Row} from '@sberdevices/ui';
 
-import { UserStage, reducer } from './store';
-import { Menu } from './Menu';
+import {reducer, UserStage} from './store';
+import {Menu} from './Menu';
 import styled, {createGlobalStyle, ThemeProvider} from "styled-components";
 import {background, body1, gradient} from "@sberdevices/plasma-tokens";
 import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
-import {Input} from "@sberdevices/ui/components/Input";
+import {Alarm} from "./Alarm";
+import {StatusWindow} from "./StatusWindow";
 
 const DocStyles = createGlobalStyle`
   html {
@@ -121,13 +111,44 @@ export const App: FC = memo(() => {
                     <DocStyles />
                     <Theme />
                     <Container>
-                        <Toolbar></Toolbar>
+                        <Toolbar setStage={setStage}></Toolbar>
                         <Menu name={cafe} dispatch={dispatch} userId={user_id} appState={appState}></Menu>
                     </Container>
                 </AppStyled>
             </ThemeProvider>
         );
+
     }
+    if (stage == UserStage.Checkout) {
+        console.log("checkout");
+        return (
+            <ThemeProvider theme={theme}>
+                <AppStyled>
+                    <DocStyles />
+                    <Theme />
+                    <Container>
+                        {/* <Toolbar setStage={setStage}></Toolbar> */}
+                        <Alarm items={appState.user_carts.get(user_id)?.items!}
+                               setStage={setStage}
+                               cafeName={cafe}></Alarm>
+                    </Container>
+                </AppStyled>
+            </ThemeProvider>
+        );
+    }
+    // if (stage == UserStage.Final) {
+    //     return (
+    //         <ThemeProvider theme={theme}>
+    //             <AppStyled>
+    //                 <DocStyles />
+    //                 <Theme />
+    //                 <Container>
+    //                     <StatusWindow status={true}></StatusWindow>
+    //                 </Container>
+    //             </AppStyled>
+    //         </ThemeProvider>
+    //     );
+    // }
 
     return (
         <ThemeProvider theme={theme}>

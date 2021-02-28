@@ -1,53 +1,34 @@
-import React, {FC, memo, useEffect, useRef, useState} from "react";
-import {AssistantAppState, createAssistant} from "@sberdevices/assistant-client";
+import React, {FC, memo} from "react";
 import {Container, Row, Col} from "@sberdevices/ui/components/Grid";
 import {Button} from "@sberdevices/ui/components/Button/Button";
 import {
-    Card, CardBody, CardContent, CardMedia, CardHeadline1,
-    Cell,CellIcon, CellDisclosure, CellListItem,
-    TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxBigTitle,
-    MarkedList, MarkedItem,  TextBoxLabel,
-    TimePicker
-} from '@sberdevices/ui';
-import {IconAvatar, IconInfo, IconSpinner} from "@sberdevices/plasma-icons";
+    Card, CardContent, Cell, CellIcon, CellListItem,
+    TextBox, TextBoxBigTitle,
+    MarkedList, MarkedItem} from '@sberdevices/ui';
+import {IconInfo, IconSpinner} from "@sberdevices/plasma-icons";
 import {primary} from "@sberdevices/plasma-tokens";
 import {Input} from "@sberdevices/ui/components/Input";
-import {isSberBox} from "@sberdevices/ui/utils";
+import {Item} from "./store"
+import { UserStage } from './store';
 
-export const Alarm: FC = memo(() => {
-    const isSberbox = isSberBox();
+type AlarmProps = {
+    items: Item[];
+    cafeName: string;
+    setStage: any;
+};
+
+export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
+    const items = props.items;
     return (
         <Container>
             <Card style={{ width: '20rem' }}>
                 <CardContent compact>
-                    {/*<TimePicker*/}
-                    {/*    value={*/}
-                    {/*        new Date(*/}
-                    {/*            now.getFullYear(),*/}
-                    {/*            now.getMonth(),*/}
-                    {/*            now.getDate(),*/}
-                    {/*            number('hours', 0),*/}
-                    {/*            number('minutes', 30),*/}
-                    {/*            number('seconds', 59),*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*    min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}*/}
-                    {/*    max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 59)}*/}
-                    {/*    options={{*/}
-                    {/*        hours: boolean('options.hours', true),*/}
-                    {/*        minutes: boolean('options.minutes', true),*/}
-                    {/*        seconds: boolean('options.seconds', true),*/}
-                    {/*    }}*/}
-                    {/*    disabled={boolean('disabled', false)}*/}
-                    {/*    controls={boolean('controls', isSberbox)}*/}
-                    {/*    onChange={action('onChange')}*/}
-                    {/*/>*/}
                     {/*Check*/}
                     <Cell
                         content={
                             <TextBox>
-                                <TextBoxBigTitle>{'Название ресторана'}</TextBoxBigTitle>
-                                <TextBoxSubTitle>{'Alarm'}</TextBoxSubTitle>
+                                <TextBoxBigTitle>{`${props.cafeName}`}</TextBoxBigTitle>
+                                {/*<TextBoxSubTitle>{'status'}</TextBoxSubTitle>*/}
                             </TextBox>
                         }
                         right={
@@ -57,18 +38,12 @@ export const Alarm: FC = memo(() => {
                         }
                     />
                     <MarkedList>
-                        <MarkedItem text="Блюдо 1" style={{ color: primary }} >
-                            <TextBox>1</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
-                        <MarkedItem text="Блюдо 2" style={{ color: primary }}>
-                            <TextBox>1</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
-                        <MarkedItem text="Блюдо 3" style={{ color: primary }}>
-                            <TextBox>2</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
+                        {items.map((item, id) => (
+                            <MarkedItem key={id} text={`${item.name}`} style={{ color: primary }} >
+                                <TextBox>1</TextBox>
+                                <IconSpinner size="xs" />
+                            </MarkedItem>
+                        ))}
                     </MarkedList>
                     <CellListItem
                         left={
@@ -103,19 +78,19 @@ export const Alarm: FC = memo(() => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col size={2}>
+                        <Col size={2} style={{ marginBottom: '1rem' }}>
                             <Input placeholder={'Комментарий'}></Input>
                         </Col>
                         <Col size={2}>
                             <Input placeholder={'Телефон'}></Input>
                         </Col>
                     </Row>
-
-                    <Button text="Заказать" view="primary" />
+                    <Input placeholder={'Время заказа'}></Input>
+                    {/* <Button text="Оформить заказ"
+                            view="primary"
+                            onClick={props.setStage(UserStage.Final)}/> */}
                 </CardContent>
             </Card>
-
-
         </Container>
     );
 });
