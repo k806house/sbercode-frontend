@@ -11,6 +11,8 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
 import {Alarm} from './Alarm'
 import {Menu} from './Menu'
+import {Button} from "@sberdevices/ui/components/Button/Button";
+import {UserStage} from "./store";
 
 const DocStyles = createGlobalStyle`
   html {
@@ -33,23 +35,32 @@ class SuperTheme {
 
 const theme = new SuperTheme();
 
-export const Toolbar: FC = memo(() => {
-    function handleClick() {
-        console.log('Back Button');
+type ToolbarProps = {
+    setStage: any;
+};
+
+export const Toolbar: FC<ToolbarProps> = memo((props: ToolbarProps) => {
+    function onClickCartButton() {
+        props.setStage(UserStage.Checkout);
     }
     return (
         <Container>
             <HeaderRoot style={{ minWidth: 1056, backgroundColor: "transparent" }}>
-                <HeaderBack onClick={handleClick}/>
+                <HeaderBack
+                    // onClick={handleClick}
+                />
                 {/*<HeaderLogo src="./images/logo.png" />*/}
                 <HeaderTitleWrapper>
                     <HeaderTitle>{'Завтра завтрак'}</HeaderTitle>
-                    <HeaderSubtitle>{'Subtitle text'}</HeaderSubtitle>
+                    <HeaderSubtitle>{'кормим вас завтраками'}</HeaderSubtitle>
                 </HeaderTitleWrapper>
                 <HeaderContent>
                     {/*<Content />*/}
                 </HeaderContent>
-                <IconCartAlt/>
+                <Button contentLeft={<IconCartAlt />}
+                        view={"clear"}
+                        onClick={onClickCartButton}
+                />
             </HeaderRoot>
         </Container>
     );

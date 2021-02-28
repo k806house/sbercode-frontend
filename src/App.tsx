@@ -21,6 +21,7 @@ import styled, {createGlobalStyle, ThemeProvider} from "styled-components";
 import {background, body1, gradient} from "@sberdevices/plasma-tokens";
 import {darkSber} from "@sberdevices/plasma-tokens/themes/darkSber";
 import {Input} from "@sberdevices/ui/components/Input";
+import {Alarm} from "./Alarm";
 
 const DocStyles = createGlobalStyle`
   html {
@@ -118,7 +119,7 @@ export const App: FC = memo(() => {
                     <DocStyles />
                     <Theme />
                     <Container>
-                        <Toolbar></Toolbar>
+                        {/*<Toolbar></Toolbar>*/}
                         <Menu name={cafe}></Menu>
                     </Container>
                 </AppStyled>
@@ -131,21 +132,22 @@ export const App: FC = memo(() => {
             <AppStyled>
                 <DocStyles />
                 <Theme />
-                <Container>
-                    <Row>
-                        <Col style={{ marginBottom: '1rem' }}></Col>
-                    </Row>
-                    <Row>
-                        <Col style={{ marginBottom: '1rem' }}></Col>
-                    </Row>
-                    <Row>
-                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
-                        <Col style={{ marginBottom: '1rem' }} size={4}>
-                            <Display1>Завтра завтрак</Display1>
-                        </Col>
-                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
-                    </Row>
-                </Container>
+                {/*<Container>*/}
+                {/*    <Row>*/}
+                {/*        <Col style={{ marginBottom: '1rem' }}></Col>*/}
+                {/*    </Row>*/}
+                {/*    <Row>*/}
+                {/*        <Col style={{ marginBottom: '1rem' }}></Col>*/}
+                {/*    </Row>*/}
+                {/*    <Row>*/}
+                {/*        <Col style={{ marginBottom: '1rem' }} size={1}></Col>*/}
+                {/*        <Col style={{ marginBottom: '1rem' }} size={4}>*/}
+                {/*            <Display1>Завтра завтрак</Display1>*/}
+                {/*        </Col>*/}
+                {/*        <Col style={{ marginBottom: '1rem' }} size={1}></Col>*/}
+                {/*    </Row>*/}
+                {/*</Container>*/}
+                <Alarm></Alarm>
             </AppStyled>
         </ThemeProvider>
     );
