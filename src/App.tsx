@@ -10,7 +10,8 @@ import {
     HeaderContent,
     HeaderSubtitle,
     CellContentWrapper,
-    Container
+    Container, Row, Col,
+    TextBox, TextBoxBiggerTitle, Display1
 } from '@sberdevices/ui';
 import {HeaderRoot} from "@sberdevices/ui/components/Header/HeaderRoot";
 
@@ -131,6 +132,19 @@ export const App: FC = memo(() => {
                 <DocStyles />
                 <Theme />
                 <Container>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }}></Col>
+                    </Row>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }}></Col>
+                    </Row>
+                    <Row>
+                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
+                        <Col style={{ marginBottom: '1rem' }} size={4}>
+                            <Display1>Завтра завтрак</Display1>
+                        </Col>
+                        <Col style={{ marginBottom: '1rem' }} size={1}></Col>
+                    </Row>
                 </Container>
             </AppStyled>
         </ThemeProvider>
