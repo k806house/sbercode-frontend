@@ -4,6 +4,7 @@ import './App.css';
 
 import { UserStage, reducer } from './store';
 import { Menu } from './Menu';
+import { Alarm } from './Alarm';
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -27,6 +28,7 @@ export const App: FC = memo(() => {
     });
 
     const [note, setNote] = useState('kekis');
+    const [stage, setStage] = useState(UserStage.ChoosingCafe);
 
     const assistantStateRef = useRef<AssistantAppState>();
     const assistantRef = useRef<ReturnType<typeof createAssistant>>();
@@ -48,15 +50,8 @@ export const App: FC = memo(() => {
 
             console.log(action);
             if (action) {
-                if (appState.user_stages.get(action.user_id) == UserStage.ChoosingItems)
-                {
-                    // console.log(appState.user_cafes.get(action.user_id));
-                    // ReactDOM.render(
-                    //     <h1>VOT ETO DAAA</h1>,
-                    //     document.getElementById('root')
-                    // );
-                }
                 dispatch(action);
+                setStage(appState.user_stages.get(action.user_id)!);
             }
         });
     }, []);
@@ -76,6 +71,15 @@ export const App: FC = memo(() => {
     const doneNote = (title: string) => {
         assistantRef.current?.sendData({ action: { action_id: 'done', parameters: { title } } });
     };
+
+    if (stage == UserStage.ChoosingItems) {
+        return (
+            //<Menu name="Чебуречная СССР"></Menu>
+            <main className="container">
+                KEKIS
+            </main>
+        );
+    }
 
     return (
         //<Menu name="Чебуречная СССР"></Menu>
