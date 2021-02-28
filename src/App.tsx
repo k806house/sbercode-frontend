@@ -114,10 +114,6 @@ export const App: FC = memo(() => {
     };
 
     if (stage == UserStage.ChoosingItems) {
-<<<<<<< HEAD
-        let menu = <Menu name={cafe} dispatch={dispatch} userId={user_id}></Menu>
-        return menu;
-=======
         return (
             <ThemeProvider theme={theme}>
                 <AppStyled>
@@ -125,12 +121,16 @@ export const App: FC = memo(() => {
                     <Theme />
                     <Container>
                         <Toolbar></Toolbar>
-                        <Menu name={cafe}></Menu>
+                        <Menu name={cafe} dispatch={dispatch} userId={user_id}></Menu>
                     </Container>
                 </AppStyled>
             </ThemeProvider>
         );
->>>>>>> 94ed2a3e4e7893abdeff263cc0032f7f9a5b57b8
+    }
+    if (stage == UserStage.Checkout) {
+        // return (
+
+        // );
     }
 
     return (
