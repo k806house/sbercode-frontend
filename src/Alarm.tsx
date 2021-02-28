@@ -14,10 +14,15 @@ import {primary} from "@sberdevices/plasma-tokens";
 import {Input} from "@sberdevices/ui/components/Input";
 import {isSberBox} from "@sberdevices/ui/utils";
 import {Toolbar} from "./Toolbar";
+import {Item} from "./store"
 
-export const Alarm: FC = memo(() => {
-    const isSberbox = isSberBox();
-    const now = new Date();
+type AlarmProps = {
+    items: Item[];
+    cafeName: string;
+};
+
+export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
+    const items = props.items;
     return (
         <Container>
             <Card style={{ width: '20rem' }}>
@@ -26,8 +31,8 @@ export const Alarm: FC = memo(() => {
                     <Cell
                         content={
                             <TextBox>
-                                <TextBoxBigTitle>{'Название ресторана'}</TextBoxBigTitle>
-                                <TextBoxSubTitle>{'Alarm'}</TextBoxSubTitle>
+                                <TextBoxBigTitle>{`${props.cafeName}`}</TextBoxBigTitle>
+                                {/*<TextBoxSubTitle>{'status'}</TextBoxSubTitle>*/}
                             </TextBox>
                         }
                         right={
@@ -37,18 +42,12 @@ export const Alarm: FC = memo(() => {
                         }
                     />
                     <MarkedList>
-                        <MarkedItem text="Блюдо 1" style={{ color: primary }} >
-                            <TextBox>1</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
-                        <MarkedItem text="Блюдо 2" style={{ color: primary }}>
-                            <TextBox>1</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
-                        <MarkedItem text="Блюдо 3" style={{ color: primary }}>
-                            <TextBox>2</TextBox>
-                            <IconSpinner size="xs" />
-                        </MarkedItem>
+                        {items.map((item) => (
+                            <MarkedItem text={`${item.name}`} style={{ color: primary }} >
+                                <TextBox>1</TextBox>
+                                <IconSpinner size="xs" />
+                            </MarkedItem>
+                        ))}
                     </MarkedList>
                     <CellListItem
                         left={
@@ -83,19 +82,17 @@ export const Alarm: FC = memo(() => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col size={2}>
+                        <Col size={2} style={{ marginBottom: '1rem' }}>
                             <Input placeholder={'Комментарий'}></Input>
                         </Col>
                         <Col size={2}>
                             <Input placeholder={'Телефон'}></Input>
                         </Col>
                     </Row>
-
+                    <Input placeholder={'Время заказа'}></Input>
                     <Button text="Заказать" view="primary" />
                 </CardContent>
             </Card>
-
-
         </Container>
     );
 });

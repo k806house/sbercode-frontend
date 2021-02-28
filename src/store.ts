@@ -1,6 +1,6 @@
 import { ActionButton } from "@sberdevices/ui";
 
-type Item = {
+export type Item = {
     item_id: number,
     img_url: string,
     name: string,

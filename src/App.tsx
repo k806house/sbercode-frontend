@@ -137,7 +137,7 @@ export const App: FC = memo(() => {
                     <Theme />
                     <Container>
                         <Toolbar setStage={setStage}></Toolbar>
-                        <Alarm></Alarm>
+                        <Alarm items={appState.user_carts.get(user_id)?.items!} cafeName={cafe}></Alarm>
                     </Container>
                 </AppStyled>
             </ThemeProvider>
