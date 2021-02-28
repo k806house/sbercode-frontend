@@ -136,19 +136,19 @@ export const App: FC = memo(() => {
             </ThemeProvider>
         );
     }
-    // if (stage == UserStage.Final) {
-    //     return (
-    //         <ThemeProvider theme={theme}>
-    //             <AppStyled>
-    //                 <DocStyles />
-    //                 <Theme />
-    //                 <Container>
-    //                     <StatusWindow status={true}></StatusWindow>
-    //                 </Container>
-    //             </AppStyled>
-    //         </ThemeProvider>
-    //     );
-    // }
+    if (stage == UserStage.Final) {
+        return (
+            <ThemeProvider theme={theme}>
+                <AppStyled>
+                    <DocStyles />
+                    <Theme />
+                    <Container>
+                        <StatusWindow status={true}></StatusWindow>
+                    </Container>
+                </AppStyled>
+            </ThemeProvider>
+        );
+    }
 
     return (
         <ThemeProvider theme={theme}>

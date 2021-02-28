@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react";
+import React, {FC, memo, useEffect} from "react";
 import {Container, Row, Col} from "@sberdevices/ui/components/Grid";
 import {Button} from "@sberdevices/ui/components/Button/Button";
 import {
@@ -86,9 +86,9 @@ export const Alarm: FC<AlarmProps> = memo((props: AlarmProps) => {
                         </Col>
                     </Row>
                     <Input placeholder={'Время заказа'}></Input>
-                    {/* <Button text="Оформить заказ"
+                    <Button text="Оформить заказ"
                             view="primary"
-                            onClick={props.setStage(UserStage.Final)}/> */}
+                            onClick={() => props.setStage(UserStage.Final)}/>
                 </CardContent>
             </Card>
         </Container>
