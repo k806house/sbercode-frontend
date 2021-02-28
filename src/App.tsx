@@ -1,7 +1,9 @@
 import React, { FC, memo, useReducer, useState, useRef, useEffect } from 'react';
 import { createSmartappDebugger, createAssistant, AssistantAppState } from '@sberdevices/assistant-client';
 import './App.css';
-import { Menu } from './Menu';
+import { Template } from './Template';
+import {Header, HeaderBack, HeaderLogo, HeaderTitle, HeaderContent, HeaderSubtitle, CellContentWrapper }  from '@sberdevices/ui';
+import {HeaderRoot} from "@sberdevices/ui/components/Header/HeaderRoot";
 
 const initializeAssistant = (getState: any) => {
     if (process.env.NODE_ENV === 'development' && window.Cypress == null) {
@@ -60,6 +62,6 @@ export const App: FC = memo(() => {
 
 
     return (
-        <Menu></Menu>
+        <Template></Template>
     );
 });
